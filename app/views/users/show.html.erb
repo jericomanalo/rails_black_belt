@@ -1,0 +1,17 @@
+<div id = 'container'>
+	
+	<div id = 'header'>
+		<a href="/ideas/index">Bright Ideas</a>
+		<a href="/logout">Logout</a>
+		<h1>Name: <%= @user.name %> </h1>
+		<h1>Alias: <%= @user.alias %> </h1>
+		<h1>Email: <%= @user.email %> </h1>
+	</div>
+
+	<div id = 'user_history'>
+		<h3>Total number of posts: <%= @number_of_posts_by_user %> </h3>
+		<h3>Total number of likes: <%= @number_of_likes_by_user %> </h3>
+			
+	</div>
+
+</div>

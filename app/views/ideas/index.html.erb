@@ -1,0 +1,37 @@
+<div id = 'container'>
+
+  <div id = 'header'>
+	<h1>Welcome, <%= @user.alias %></h1>
+	<a href="/logout">Logout</a>
+  </div>
+
+  <div id = 'wall_of_ideas'>
+	<form action ='/ideas/add_idea' method ='post'>
+	  <input type= 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+	  <input type = 'hidden' name = 'user_id' value = '<%= @user.id %>'>
+	  <input type = 'text' name = 'message' value = 'Post something dope'>
+	  <input type = 'submit' name = 'add_idea' value = 'Post it'>
+	</form>
+
+	<% @ideas.each do |idea| %>
+	<div id = 'each_idea'>
+	  <p> <a href = '/users/<%= idea.user.id %>'><%= idea.user.alias %> </a> says: <%= idea.message %> </p>
+		<form action = '/ideas/<%= idea.id %>/like' method = 'post'>
+		<input type= 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+		<input type = 'hidden' name = 'user_id' value = '<%= @user.id %>'>
+		<input type = 'submit' name = 'like' value = 'Like'>
+		</form>
+	  <a href = '/ideas/<%= idea.id %>'> <%= idea.likes.count %> people like this idea</a>
+		<% if @user.id == idea.user_id %>
+		  <form action = '/ideas/<%= idea.id %>/delete' method = 'post'>
+			<input type= 'hidden' name = 'authenticity_token' value = '<%= form_authenticity_token %>'>
+			<input type= 'hidden' name = '_method' value= 'delete'>
+			<input type = 'submit' name = 'delete' value = 'Delete'>
+		  </form>
+		<% end %>	  	
+	  <% end %>
+	</div>
+
+  </div>
+
+</div>

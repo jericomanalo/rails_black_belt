@@ -1,0 +1,27 @@
+<div id = 'container'>
+	
+	<div id = 'header'>
+		<a href="/ideas/index">Bright Ideas</a>
+		<a href="/logout">Logout</a>
+		<h1> <%= @user_that_created_post.user.alias %> says: <%= @idea_by_id.message %> </h1>
+	</div>
+
+	<div id = 'likers_table'>
+			<% if @likes_by_idea_id.count != 0 %>
+				<h2>People who liked this post:</h2>
+				<table>
+					<tr>
+						<th>Alias</th>
+						<th>Name</th>
+					</tr>
+					<% @likes_by_idea_id.each do |like| %>
+					<tr>
+						<td><%= like.user.alias %></td>
+						<td><%= like.user.name %></td>
+					</tr>
+					<% end %>
+				</table>
+			<% end %>
+	</div>
+
+</div>
