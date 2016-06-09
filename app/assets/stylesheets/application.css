@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+#landingPage{
+	background-image: url("bg.jpg");
+	padding-top:40px;
+	color:white;
+	text-shadow:2px 2px black;
+}
