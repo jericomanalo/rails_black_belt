@@ -3,19 +3,19 @@ class UsersController < ApplicationController
   end
 
   def register
-  	user = User.create(name: params[:name], alias: params[:alias], email: params[:email], password: params[:password])
-  	# if user.errors == nil
-  	# 	puts "+_+_+_+_+_+_+_+_+_+_+", user.errors.full_messages, "+_+_+_+_+_+_+_+_+_+_+"
-  	# 	redirect_to "/"
-  	# else
+  	# user = User.new(name: params[:name], alias: params[:alias], email: params[:email], password: params[:password])
+    user = User.new(user_params)
+  	if user.save
 	  	session[:user_id] = user.id
 	  	redirect_to "/ideas/index"
-  	# end
+  	else
+      redirect_to "/"
+    end
   end
 
   def login
-    if User.find_by(email: params[:email]) and User.find_by(password: params[:password]) != nil
-      user = User.find_by(email: params[:email])
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to "/ideas/index"
     else
@@ -32,6 +32,12 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@number_of_posts_by_user = @user.ideas.count
   	@number_of_likes_by_user = @user.likes.count
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :alias, :email, :password, :password_confirmation)
   end
 
 end

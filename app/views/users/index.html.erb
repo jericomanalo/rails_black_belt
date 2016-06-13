@@ -6,11 +6,11 @@
 				<h2 class="form-register-heading">Register</h2>
 					<form class="form-register" action ="/users/register" method="post">
 						<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-						<input class="form-control" placeholder="Name" type="text" name="name"><br>
-						<input class="form-control" placeholder="Alias" type="text" name="alias"><br>
-						<input class="form-control" placeholder="Email" type="text" name="email"><br>
-						<input class="form-control" placeholder="Password" type="password" name="password"><br>
-						<input class="form-control" placeholder="Confirm Password" type="password" name="password_confirmation"><br>
+						<input class="form-control" placeholder="Name" type="text" name="user[name]"><br>
+						<input class="form-control" placeholder="Alias" type="text" name="user[alias]"><br>
+						<input class="form-control" placeholder="Email" type="text" name="user[email]"><br>
+						<input class="form-control" placeholder="Password" type="password" name="user[password]"><br>
+						<input class="form-control" placeholder="Confirm Password" type="password" name="user[password_confirmation]"><br>
 						<button type='submit' class='btn btn-primary btn-md btn-block'>Create Account</button>
 					</form>
 			</div>
